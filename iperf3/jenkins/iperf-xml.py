@@ -19,7 +19,7 @@ def iter_results(lines):
         line = next(i)
         if line.startswith('[ ID]'):
             line = next(i)
-            print('processing {}\n'.format(line))
+            print(f'processing {line}\n')
             yield line[5:].split()[4]
 
 with open(args[0]) as f:

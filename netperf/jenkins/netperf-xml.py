@@ -33,7 +33,7 @@ with open(args[0]) as f:
             row, col = tests[name]
             result = lines[row].split()[col]
     if result is None:
-        print('Cannot parse test from {}\n'.format(line));
+        print(f'Cannot parse test from {line}\n');
         sys.exit(1)
 
 def add_time(parent, name):

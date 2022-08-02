@@ -15,11 +15,37 @@ if not ycsb_home or not os.path.exists(ycsb_home):
 else:
    try:
       os.chdir(ycsb_home)
-      output = subprocess.check_output(['./bin/ycsb', 'load', 'redis', '-s', '-P', 'workloads/workloada',
-                                        '-p', 'redis.host=%s' % server_host, '-p', 'redis.port=6379'], stderr=subprocess.STDOUT).decode()
+      output = subprocess.check_output(
+          [
+              './bin/ycsb',
+              'load',
+              'redis',
+              '-s',
+              '-P',
+              'workloads/workloada',
+              '-p',
+              f'redis.host={server_host}',
+              '-p',
+              'redis.port=6379',
+          ],
+          stderr=subprocess.STDOUT,
+      ).decode()
       print(output)
-      output = subprocess.check_output(['./bin/ycsb', 'run', 'redis', '-s', '-P', 'workloads/workloada',
-                                        '-p', 'redis.host=%s' % server_host, '-p', 'redis.port=6379'], stderr=subprocess.STDOUT).decode()
+      output = subprocess.check_output(
+          [
+              './bin/ycsb',
+              'run',
+              'redis',
+              '-s',
+              '-P',
+              'workloads/workloada',
+              '-p',
+              f'redis.host={server_host}',
+              '-p',
+              'redis.port=6379',
+          ],
+          stderr=subprocess.STDOUT,
+      ).decode()
       print(output)
 
       if '[UPDATE], Return=OK' in output:

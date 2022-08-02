@@ -82,10 +82,10 @@ def write_xml(w, result):
     w.write(str(ET.tostring(report), 'UTF8'))
 
 def print_table(data):
-    formats = []
+    formats = [
+        '%%%ds' % (max(len(str(value)), len(header))) for header, value in data
+    ]
 
-    for header, value in data:
-        formats.append('%%%ds' % (max(len(str(value)), len(header))))
 
     format = ' '.join(formats)
 

@@ -6,19 +6,26 @@ _catalina_base = "/usr/tomcat"
 _catalina_home = _catalina_base
 _catalina_tmpdir = "/tmp/catalina"
 
-_classpath = [_catalina_home + "/bin/bootstrap.jar"]
-
 _logging_config = [
-    "-Djava.util.logging.config.file=%s/conf/logging.properties" % _catalina_base,
-    "-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager"
+    f"-Djava.util.logging.config.file={_catalina_base}/conf/logging.properties",
+    "-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager",
 ]
-_classpath.append("%s/bin/tomcat-juli.jar" % _catalina_base)
+
+_classpath = [
+    f"{_catalina_home}/bin/bootstrap.jar",
+    f"{_catalina_base}/bin/tomcat-juli.jar",
+]
 
 default = api.run_java(
-        classpath=_classpath,
-        args=_logging_config + [
-            "-Dcatalina.base=%s" % _catalina_base,
-            "-Dcatalina.home=%s" % _catalina_base,
-            "-Djava.io.tmpdir=%s" % _catalina_tmpdir,
-            "org.apache.catalina.startup.Bootstrap", "start"
-        ])
+    classpath=_classpath,
+    args=(
+        _logging_config
+        + [
+            f"-Dcatalina.base={_catalina_base}",
+            f"-Dcatalina.home={_catalina_base}",
+            f"-Djava.io.tmpdir={_catalina_tmpdir}",
+            "org.apache.catalina.startup.Bootstrap",
+            "start",
+        ]
+    ),
+)

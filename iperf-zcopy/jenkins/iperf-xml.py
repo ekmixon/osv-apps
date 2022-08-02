@@ -18,7 +18,7 @@ with open(args[0]) as f:
     while not line.startswith('[ ID]'):
         line = f.readline()
     line = f.readline()
-    print('processing {}\n'.format(line))
+    print(f'processing {line}\n')
     result = line[5:].split()[4]
 
 def add_time(parent, name):

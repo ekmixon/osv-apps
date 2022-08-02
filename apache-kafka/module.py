@@ -30,7 +30,7 @@ zookeeper_cmd = (
     '-cp :/kafka/libs/* '
     'org.apache.zookeeper.server.quorum.QuorumPeerMain /kafka/config/zookeeper.properties')
 
-default = api.run('/java.so ' + kafka_cmd)
-native = api.run('/usr/bin/java ' + kafka_cmd)
+default = api.run(f'/java.so {kafka_cmd}')
+native = api.run(f'/usr/bin/java {kafka_cmd}')
 
-zookeeper = api.run('/usr/bin/java ' + zookeeper_cmd)
+zookeeper = api.run(f'/usr/bin/java {zookeeper_cmd}')

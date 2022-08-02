@@ -10,11 +10,8 @@ def do_http_test():
     time.sleep(3)
     resp = urllib2.urlopen('http://192.168.122.89:3000/setup')
     body = resp.read()
-    print("response of /setup:%s" % body)
-    if re.search(r'Welcome to your blog setup', body) == None:
-        return False
-
-    return True
+    print(f"response of /setup:{body}")
+    return re.search(r'Welcome to your blog setup', body) is not None
 
 qemu = subprocess.Popen("./scripts/run.py -n", shell=True, cwd="../..", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, close_fds=True)
 while True:
